@@ -16,10 +16,16 @@ int main()
 
         imprime_vetor(vetor,TAM);
 
-    	if( busca_binaria(vetor, TAM, chave) ){
+    	if( busca_sequencial(vetor, TAM, chave) ){
 		printf("Existe a chave %d no arquivo.\n", chave);
         }else{
-		printf("Não existe a chave %d no arquivo.\n", chave);
+		printf("Nao existe a chave %d no arquivo.\n", chave);
+    }
+
+      	if( busca_binaria(vetor, TAM, chave) ){
+		printf("Existe a chave %d no arquivo.\n", chave);
+        }else{
+		printf("Nao existe a chave %d no arquivo.\n", chave);
     }
     fim = clock(); 
 
