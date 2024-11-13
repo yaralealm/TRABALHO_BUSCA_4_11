@@ -8,6 +8,11 @@
 #define TRUE 1
 #define FALSE 0
 
+struct vetor_index {
+    int elemento; 
+    int posicao; 
+}; 
+
 
 void carrega_vetor_ordenado(int colecao[], int valor_inicial, int tamanho){
 	int i;
@@ -25,14 +30,37 @@ void imprime_vetor(int colecao[], int tamanho){
 	printf("\n");
 }
 
-int busca_sequencial(int file[], int size, int key){
-    int founded = FALSE;
-    for(int i = 0; i < size && file[i] <= key; i++){
-        if(file[i] == key){
-            founded = TRUE;
-        }
-    }
-    return founded;
+void vetor_index(int vet[], int index[], int tamanho, int ind){
+	for (int i = 0; i < tamanho; i++)
+	{
+		index[i] = vet[ind]; 
+		ind += 10000; 
+	}
+	
+}
+
+void vetor_index_struct(int vet[], Index index[], int tamanho, int ind){
+	for (int i = 0; i < tamanho; i++)
+	{
+		index[i].elemento = vet[ind]; 
+		index[i].posicao = ind; 
+		ind += 10000; 
+	}
+	
+}
+
+int busca_intervalo(Index index[], int tamanho, int chave){
+	int pos; 
+	for (int i = 0; i < tamanho; i++)
+	{
+		if (chave <= index[i].elemento)
+		{
+			pos = i; 
+		}
+		
+	}
+	
+	return pos; 
 }
 
 int busca_binaria(int file[], int size, int key){
