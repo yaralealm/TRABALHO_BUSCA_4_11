@@ -5,13 +5,8 @@
 #include <stdlib.h>
 
 
-#define TRUE 1
-#define FALSE 0
-
-struct vetor_index {
-    int elemento; 
-    int posicao; 
-}; 
+#define TAM 1000000
+#define TAM2 1000 //de 1000 em 1000 
 
 
 void carrega_vetor_ordenado(int colecao[], int valor_inicial, int tamanho){
@@ -25,64 +20,54 @@ void carrega_vetor_ordenado(int colecao[], int valor_inicial, int tamanho){
 void imprime_vetor(int colecao[], int tamanho){
 	int i=0;
 	for(i=0; i < tamanho; i++){
-		printf("%d, ", colecao[i]);
+		printf("Vetor[%d] = %d\n, ",i, colecao[i]);
 	}
 	printf("\n");
 }
 
-void vetor_index(int vet[], int index[], int tamanho, int ind){
-	for (int i = 0; i < tamanho; i++)
-	{
-		index[i] = vet[ind]; 
-		ind += 10000; 
-	}
-	
+
+
+void vetor_index_struct(int vet[], Index index[], int tamanho_vet, int tamanho_ind) {
+    for (int i = 0; i < tamanho_ind; i++) {
+        int posicao_final = (i + 1) * tamanho_ind - 1; //de 999 em 999;
+        if (posicao_final >= tamanho_vet) posicao_final = tamanho_vet - 1; // Evitar overflow
+        index[i].elemento = vet[posicao_final]; //o valor do array de indices eh igual ao valor do array de vetores na posição 999 e assim por diante.
+        index[i].posicao = posicao_final;
+    }
 }
 
-void vetor_index_struct(int vet[], Index index[], int tamanho, int ind){
-	for (int i = 0; i < tamanho; i++)
-	{
-		index[i].elemento = vet[ind]; 
-		index[i].posicao = ind; 
-		ind += 10000; 
-	}
-	
-}
+    int intervalo(Index ind[], int size, int chave){
+    for(int i=0; i<size; i++){
+        if(chave <= ind[i].elemento){
+            return i; 
+            }
+        }
+        
+        return -1; 
+    }
 
-int busca_intervalo(Index index[], int tamanho, int chave){
-	int pos; 
-	for (int i = 0; i < tamanho; i++)
-	{
-		if (chave <= index[i].elemento)
-		{
-			pos = i; 
-		}
-		
-	}
-	
-	return pos; 
-}
 
-int busca_binaria(int file[], int size, int key){
-		int achou = FALSE;
-		int inicio, fim, meio;
-		
-		inicio=0; 
-		fim = size-1;
-		meio = (inicio + fim) / 2;
-		
-		while(inicio <= fim && !achou){
-			if( file[meio] == key ){
-				achou = TRUE;
-			}else{
-				if (key < file[meio]){
-					fim = meio - 1;
-				}else{
-					inicio = meio + 1;
-				}
-				meio = (inicio + fim) / 2;
-			}
-		}
-		
-		return achou;
+
+int busca_binaria(int vet[], Index ind[], int size_vet, int size_ind, int chave) {
+    int inter = intervalo(ind, size_ind, chave);
+    if (inter == -1) {
+        return -1; // Chave não encontrada nos índices
+    }
+
+    int inicio = (inter == 0) ? 0 : ind[inter - 1].posicao + 1;
+    int fim = ind[inter].posicao;
+    int meio;
+
+    while (inicio <= fim) {
+        meio = (inicio + fim) / 2;
+        if (vet[meio] == chave) {
+            return meio;
+        } else if (chave < vet[meio]) {
+            fim = meio - 1;
+        } else {
+            inicio = meio + 1;
+        }
+    }
+
+    return -1; // Chave não encontrada
 }

@@ -2,40 +2,33 @@
 #include <time.h>
 #include "funcoes.h"
 
-#define TAM 100000
-#define IND 100 //de 10.000 em 10.000; 
+#define TAM 1000000
+#define TAM2 1000 //de 1000 em 1000 
 
-struct vetor_index {
-    int elemento; 
-    int posicao; 
-}; 
 
 int main(){
 
-    typedef struct vetor_index Index; 
     int vetor[TAM]; 
-    Index index[IND];
+    Index ind[TAM2]; 
     int chave = 113; 
     clock_t inicio, fim; 
     double tempo; 
-
   
+
+    inicio = clock(); 
+    carrega_vetor_ordenado(vetor, 1, TAM); 
+    
+    vetor_index_struct(vetor, ind, TAM, TAM2);
+    
+    int pos = busca_binaria(vetor,ind,TAM,TAM2,chave); 
     
 
-        inicio = clock(); 
-        carrega_vetor_ordenado(vetor,15,TAM); 
 
-        imprime_vetor(vetor,TAM);
-
-        vetor_index(vetor,index,IND,10000); 
-
-        imprime_vetor(index, IND); 
-
-    //   	if( busca_binaria (vetor, TAM, chave) ){
-	// 	printf("Existe a chave %d no arquivo.\n", chave);
-    //     }else{
-	// 	printf("Nao existe a chave %d no arquivo.\n", chave);
-    // }
+   if(pos == -1){
+       printf("Chave não encontrada no vetor :(\n"); 
+   }else{
+       printf("Chave encontrada na posição %d.\n", pos); 
+   }
     fim = clock(); 
 
    printf("Tempo: %lf\n", tempo = ((double) (fim - inicio)) / CLOCKS_PER_SEC);

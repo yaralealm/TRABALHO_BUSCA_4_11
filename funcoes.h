@@ -3,16 +3,19 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
-typedef struct vetor_index Index; 
+struct index {
+    int elemento; 
+    int posicao; 
+}; 
 
+typedef struct index Index; 
 
 void carrega_vetor_ordenado(int colecao[], int valor_inicial, int tamanho);
 
 void imprime_vetor(int colecao[], int tamanho); 
 
-void vetor_index(int vet[], int index[], int tamanho, int ind); 
+void vetor_index_struct(int vet[], Index index[], int tamanho_vet, int tamanho_ind);
 
-void vetor_index_struct(int vet[], Index index[], int tamanho, int ind); 
+int intervalo(Index ind[], int size, int chave); 
 
-int busca_intervalo(Index index[], int tamanho, int chave); 
-int busca_binaria(int file[], int size, int key); 
+int busca_binaria(int vet[], Index ind[], int size_vet, int size_ind, int chave);
