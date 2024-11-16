@@ -29,7 +29,9 @@ void imprime_vetor(int colecao[], int tamanho){
 
 void vetor_index_struct(int vet[], Index index[], int tamanho_vet, int tamanho_ind) {
     for (int i = 0; i < tamanho_ind; i++) {
+
         int posicao_final = (i + 1) * tamanho_ind - 1; //de 999 em 999;
+		
         if (posicao_final >= tamanho_vet) posicao_final = tamanho_vet - 1; // Evitar overflow
         index[i].elemento = vet[posicao_final]; //o valor do array de indices eh igual ao valor do array de vetores na posição 999 e assim por diante.
         index[i].posicao = posicao_final;
