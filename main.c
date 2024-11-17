@@ -10,7 +10,7 @@ int main(){
 
     int vetor[TAM]; 
     Index ind[TAM2]; 
-    int chave = 113; 
+    int chave = 13550; 
     clock_t inicio, fim; 
     double tempo; 
   
@@ -20,14 +20,16 @@ int main(){
     
     vetor_index_struct(vetor, ind, TAM, TAM2);
     
+
     int pos = busca_binaria(vetor,ind,TAM,TAM2,chave); 
     
-
-
+    
    if(pos == -1){
        printf("Chave nao encontrada no vetor :(\n"); 
    }else{
        printf("Chave encontrada na posicao %d.\n", pos); 
+       imprime_vetor(vetor,pos); 
+
    }
     fim = clock(); 
 
