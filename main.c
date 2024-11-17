@@ -25,9 +25,9 @@ int main(){
 
 
    if(pos == -1){
-       printf("Chave não encontrada no vetor :(\n"); 
+       printf("Chave nao encontrada no vetor :(\n"); 
    }else{
-       printf("Chave encontrada na posição %d.\n", pos); 
+       printf("Chave encontrada na posicao %d.\n", pos); 
    }
     fim = clock(); 
 
