@@ -16,3 +16,5 @@ Foram utilizadas funções para descobrir o intervalo da chave e se ela de fato 
 do termo procurado. 
 O método de busca binária foi escolhido pela questão de otimização do tempo de processamento da máquina. 
 Foi necessário o uso de compilador online devido a quantidade de elementos do vetor principal. 
+
+LINK YOUTUBE - https://youtu.be/snGMrjwWBII
